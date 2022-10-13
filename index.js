@@ -8,3 +8,14 @@ const app = express();
 app.use(express.static("public"));
 
 const http = app.listen(3000);
+
+
+
+// Code below is socket.io related
+
+// socket.io needs a http instance
+const io = socketio(http);
+
+io.on("connection", function(client) {
+
+})
