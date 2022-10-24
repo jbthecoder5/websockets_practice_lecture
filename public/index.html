@@ -26,8 +26,13 @@
       let socket = io.connect();
 
       $("#sendBtn").on("click", function(){
-        
+        let chatMessage = $("#chatTxt").val();
+        socket.emit("newChat", chatMessage);
       })
+
+      socket.on("chat", function(chatMessage) {
+        $("#chatWindow").html($("#chatWindow").html() + chatMessage + "</br>");
+      });
     </script>
   </body>
 </html>

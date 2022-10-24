@@ -19,6 +19,12 @@ const io = socketio(http); // this automatically creates a static script resourc
 io.on("connection", function(client) {
   console.log("A client has connected");
 
+  client.on("newChat", function(chatMessage) {
+    // Emit the chat message to all connected clients
+    io.emit("chat", chatMessage);
+    console.log(chatMessage);
+  })
+
   client.on("disconnect", function() {
     console.log("A client has disconnected");
   })
