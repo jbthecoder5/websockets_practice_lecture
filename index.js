@@ -1,5 +1,5 @@
 const express = require("express");
-
+const socketio = require("socket.io");
 
 const app = express();
 
@@ -18,11 +18,6 @@ const io = socketio(http); // this automatically creates a static script resourc
 
 io.on("connection", function(client) {
   console.log("A client has connected");
-
-  client.on("newChat", function(chatMessage) {
-    io.emit("chat")
-    console.log(chatMessage);
-  })
 
   client.on("disconnect", function() {
     console.log("A client has disconnected");
