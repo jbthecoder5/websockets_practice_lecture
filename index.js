@@ -21,8 +21,16 @@ io.on("connection", function(client) {
 
   client.on("newChat", function(chatMessage) {
     // Emit the chat message to all connected clients
-    io.emit("chat", chatMessage);
-    console.log(chatMessage);
+    let newChat = {
+      handle: client.x_handle,
+      chat: chatMessage
+    }
+
+    io.emit("chat", newChat);
+  })
+
+  client.on("join", function(handle) {
+    client.x_handle = handle;
   })
 
   client.on("disconnect", function() {
